@@ -1,8 +1,6 @@
 absl-py==1.4.0
-aiofiles==0.6.0
 altgraph==0.17.2
 anyio==3.6.2
-python-multipart==0.0.5
 appdirs==1.4.4
 appnope @ file:///Users/ktietz/demo/mc3/conda-bld/appnope_1629146036738/work
 argon2-cffi @ file:///Users/ktietz/demo/mc3/conda-bld/argon2-cffi_1629726290123/work
@@ -30,6 +28,7 @@ decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
 defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 distlib==0.3.4
 dnspython==2.3.0
+docopt==0.6.2
 entrypoints==0.3
 exceptiongroup==1.0.1
 fastapi==0.92.0
@@ -100,6 +99,7 @@ pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
 pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
 Pillow==9.1.0
 pipenv==2022.5.2
+pipreqs==0.4.11
 platformdirs==2.5.2
 playwright==1.27.1
 pluggy==1.0.0
@@ -324,4 +324,5 @@ webencodings==0.5.1
 Werkzeug==2.2.2
 widgetsnbextension @ file:///Users/ktietz/demo/mc3/conda-bld/widgetsnbextension_1629356330351/work
 wrapt==1.14.1
+yarg==0.1.9
 zipp @ file:///opt/conda/conda-bld/zipp_1641824620731/work
