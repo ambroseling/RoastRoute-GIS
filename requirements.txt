@@ -2,7 +2,7 @@ absl-py==1.4.0
 altgraph==0.17.2
 anyio==3.6.2
 appdirs==1.4.4
-appnope @ file:///Users/ktietz/demo/mc3/conda-bld/appnope_1629146036738/work
+appnope==0.1.3
 argon2-cffi @ file:///Users/ktietz/demo/mc3/conda-bld/argon2-cffi_1629726290123/work
 astunparse==1.6.3
 async-generator @ file:///home/ktietz/src/ci/async_generator_1611927993394/work
