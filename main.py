@@ -23,7 +23,6 @@ def load_user_data():
 
 def save_user_data(data):
     with open(USER_DATA_FILE, "w") as f:
-        f.write()
         json.dump(data, f)
         print(data)
 
