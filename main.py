@@ -21,14 +21,6 @@ async def get_users() -> List[dict]:
     """
     Returns a list of all users in the database
     """
-    users = []
-    for user in users:
-        users.append({
-            "name": user["name"],
-            "latitude": user["latitude"],
-            "longitude": user["longitude"],
-            "active": user["active"]
-        })
     return users
 
 @app.get("/create_users")
@@ -43,4 +35,4 @@ async def create_user(name: str, latitude: float, longitude: float, active: bool
         "active": active
     }
     result = users.append(new_user)
-    return {"message": "User created successfully", "id": str(result.inserted_id)}
+    return {"message": "User created successfully"}
