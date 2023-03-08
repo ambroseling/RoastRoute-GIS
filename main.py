@@ -1,3 +1,4 @@
+import json
 from fastapi import FastAPI
 from typing import List
 
@@ -8,7 +9,24 @@ app = FastAPI()
 # db = client["ECE297_DB"]
 # collection = db["Users"]
 
-users = []
+
+USER_DATA_FILE = "users.json"
+
+def load_user_data():
+    try:
+        with open(USER_DATA_FILE, "r") as f:
+            data = json.load(f)
+            return data
+    except:
+        return []
+
+def save_user_data(data):
+    with open(USER_DATA_FILE, "w") as f:
+        json.dump(data, f)
+
+users = load_user_data()
+
+
 
 @app.get("/")
 def read_root():
@@ -34,4 +52,5 @@ async def create_user(name: str, latitude: float, longitude: float, active: bool
         "active": active
     }
     users.append(new_user)
+    save_user_data(users)
     return {"message": "User created successfully","users":users}
