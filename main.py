@@ -34,7 +34,7 @@ def read_root():
 #run server with uvicorn main:app --reload
 
 @app.get("/get_users")
-async def get_users() -> List[dict]:
+async def get_users():
     """
     Returns a list of all users in the database
     """
