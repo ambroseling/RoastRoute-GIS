@@ -34,4 +34,4 @@ async def create_user(name: str, latitude: float, longitude: float, active: bool
         "active": active
     }
     users.append(new_user)
-    return {"message": "User created successfully"}
+    return {"message": "User created successfully","users":users}
