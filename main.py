@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from pymongo import MongoClient
 from typing import List
 
 app = FastAPI()
