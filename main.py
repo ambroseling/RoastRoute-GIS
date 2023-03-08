@@ -22,7 +22,7 @@ async def get_users() -> List[dict]:
     Returns a list of all users in the database
     """
     users = []
-    for user in collection.find():
+    for user in users:
         users.append({
             "name": user["name"],
             "latitude": user["latitude"],
@@ -42,5 +42,5 @@ async def create_user(name: str, latitude: float, longitude: float, active: bool
         "longitude": longitude,
         "active": active
     }
-    result = collection.insert_one(new_user)
+    result = users.append(new_user)
     return {"message": "User created successfully", "id": str(result.inserted_id)}
