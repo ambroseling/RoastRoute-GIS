@@ -16,13 +16,16 @@ def load_user_data():
     try:
         with open(USER_DATA_FILE, "r") as f:
             data = json.load(f)
+            print(data)
             return data
     except:
         return []
 
 def save_user_data(data):
     with open(USER_DATA_FILE, "w") as f:
+        f.write()
         json.dump(data, f)
+        print(data)
 
 users = load_user_data()
 
@@ -52,5 +55,6 @@ async def create_user(name: str, latitude: float, longitude: float, active: bool
         "active": active
     }
     users.append(new_user)
+    print(users)
     save_user_data(users)
     return {"message": "User created successfully","users":users}
