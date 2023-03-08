@@ -5,9 +5,11 @@ from typing import List
 app = FastAPI()
 #client = MongoClient("mongo://localhost:27017/")
 # Set up MongoDB connection
-client = MongoClient("mongodb://localhost:27017/")
-db = client["ECE297_DB"]
-collection = db["Users"]
+# client = MongoClient("mongodb://localhost:27017/")
+# db = client["ECE297_DB"]
+# collection = db["Users"]
+
+users = []
 
 @app.get("/")
 def read_root():
