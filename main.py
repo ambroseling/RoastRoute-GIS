@@ -52,6 +52,17 @@ async def get_users():
     """
     return users
 
+@app.get("/get_user/{name}")
+async def get_user(name: str):
+    """
+    Returns the user with the provided name
+    """
+    users = load_user_data()
+    for user in users:
+        if user["name"] == name:
+            return {"user": user}
+    return {"message": "User not found"}
+
 @app.get("/create_users")
 async def create_user(name: str, latitude: float, longitude: float, active: bool):
     """
@@ -145,4 +156,23 @@ async def cancel_request(sender: str, receiver: str):
     # If the receiver is not found in the user list, return a message
     return {"message": f"{receiver} not found"}
 
-    
+@app.put("/update_request_status")
+async def update_request_status(sender: str, receiver: str, status: int):
+    """
+    Updates the status field of a date_requests object in the database
+    """
+    users = load_user_data()
+
+    # Find the receiver in the user list
+    for user in users:
+        if user["name"] == receiver:
+            # Loop through the date_requests list to find the sender's object and update its status field
+            for request in user["date_requests"]:
+                if request["sender_name"] == sender:
+                    request["status"] = status
+                    save_user_data(users)
+                    return {"message": f"Request status updated for {sender}'s request to {receiver}"}
+            # If the sender's object is not found in the date_requests list, return a message
+            return {"message": f"{sender}'s request to {receiver} was not found"}
+    # If the receiver is not found in the user list, return a message
+    return {"message": f"{receiver} not found"}
