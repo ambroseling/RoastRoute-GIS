@@ -63,14 +63,39 @@ async def create_user(name: str, latitude: float, longitude: float, active: bool
         "name": name,
         "latitude": latitude,
         "longitude": longitude,
-        "active": active
+        "active": active,
+        "date_requests":[]
     }
     users.append(new_user)
     print(users)
     save_user_data(users)
     return {"message": "User created successfully","users":users}
 
-@app.put("/update_user_active")
+
+@app.get("/delete_all_users")
+async def delete_all_users():
+    """
+    Deletes all user entries from the database
+    """
+    users = []
+    save_user_data(users)
+    return {"message": "All users deleted successfully"}
+
+@app.get("/delete_user/{name}")
+async def delete_user(name: str):
+    """
+    Deletes a user entry with the provided name from the database
+    """
+    users = load_user_data()
+    for user in users:
+        if user["name"] == name:
+            users.remove(user)
+            save_user_data(users)
+            return {"message": "User deleted successfully", "user": user}
+    return {"message": "User not found"}
+
+
+@app.get("/update_user_active")
 async def update_user_active(name: str, active: bool):
     """
     Updates the active field of a user's entry in the database
@@ -82,3 +107,42 @@ async def update_user_active(name: str, active: bool):
             save_user_data(users)
             return {"message": "User updated successfully", "user": user}
     return {"message": "User not found"}
+
+@app.get("/send_request")
+async def send_request(sender: str, receiver: str):
+    """
+    Adds the sender to the receiver's date_requests list
+    """
+    users = load_user_data()
+    # Find the receiver in the user list
+    for user in users:
+        if user["name"] == receiver:
+            # Append an object with sender's name and status to the receiver's date_requests list
+            user["date_requests"].append({"sender_name": sender, "status": 0})
+            save_user_data(users)
+            return {"message": f"{sender} has sent a date request to {receiver}"}
+    return {"message": f"{receiver} not found"}
+
+
+@app.get("/cancel_request")
+async def cancel_request(sender: str, receiver: str):
+    """
+    Removes the sender's object from the receiver's date_requests list
+    """
+    users = load_user_data()
+
+    # Find the receiver in the user list
+    for user in users:
+        if user["name"] == receiver:
+            # Loop through the date_requests list to find the sender's object and remove it
+            for request in user["date_requests"]:
+                if request["sender_name"] == sender:
+                    user["date_requests"].remove(request)
+                    save_user_data(users)
+                    return {"message": f"{sender}'s date request to {receiver} has been cancelled"}
+            # If the sender's object is not found in the date_requests list, return a message
+            return {"message": f"{sender}'s date request to {receiver} was not found"}
+    # If the receiver is not found in the user list, return a message
+    return {"message": f"{receiver} not found"}
+
+    
