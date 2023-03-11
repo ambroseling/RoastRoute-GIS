@@ -46,6 +46,7 @@ def read_root():
 
 @app.get("/get_users")
 async def get_users():
+    users = load_user_data()
     """
     Returns a list of all users in the database
     """
