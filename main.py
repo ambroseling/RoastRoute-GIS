@@ -1,8 +1,17 @@
 import json
 from fastapi import FastAPI
 from typing import List
-
+from fastapi.middleware.cors import CORSMiddleware
+ 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://ece297mapper.herokuapp.com/"], # replace * with the domain(s) of your client
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 #client = MongoClient("mongo://localhost:27017/")
 # Set up MongoDB connection
 # client = MongoClient("mongodb://localhost:27017/")
@@ -47,6 +56,8 @@ async def create_user(name: str, latitude: float, longitude: float, active: bool
     """
     Creates a new user entry in the database
     """
+    users = load_user_data()
+
     new_user = {
         "name": name,
         "latitude": latitude,
@@ -57,3 +68,16 @@ async def create_user(name: str, latitude: float, longitude: float, active: bool
     print(users)
     save_user_data(users)
     return {"message": "User created successfully","users":users}
+
+@app.put("/update_user_active")
+async def update_user_active(name: str, active: bool):
+    """
+    Updates the active field of a user's entry in the database
+    """
+    users = load_user_data()
+    for user in users:
+        if user["name"] == name:
+            user["active"] = active
+            save_user_data(users)
+            return {"message": "User updated successfully", "user": user}
+    return {"message": "User not found"}
