@@ -7,3 +7,4 @@
 ## Why RoastRoute?
 - Roast Route lets you easily locate your favourite coffee shops through our coffee shops button
 - Roast Route's find Coffee Dates feature allows you to quickly search for people like you that want to connect over a cup of coffee
+- Roast Route's 
