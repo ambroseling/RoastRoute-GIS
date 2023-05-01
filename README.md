@@ -90,7 +90,7 @@ To tackle the travelling courier problem, our team explored different ways of im
     <tr>
       <td>Greedy Algorithm</td>
       <td>
-        A Greedy Algorithm is simply an algorithm that always considers the closest legal option when doing a pick-up or drop-off. It continues to do so until np legal options are ;eft to explore, meaning all pickups and drop offs are completed.
+        A Greedy Algorithm is simply an algorithm that always considers the closest legal option when doing a pick-up or drop-off. It continues to do so until no legal options are left to explore, meaning all pickups and drop offs are completed.
       </td>
       <td>
      <img src="https://user-images.githubusercontent.com/93873940/235388406-83acad25-2c11-4083-9871-6d52f89d3882.png" alt="Screenshot">   
